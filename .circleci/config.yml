@@ -9,7 +9,7 @@ jobs:
       # - setup_remote_docker
       - run:
           name: Run tests
-          command: python3 pytest
+          command: pytest
       # - deploy:
       #     name: Push application Docker image
       #     command: |
