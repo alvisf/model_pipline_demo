@@ -1,0 +1,10 @@
+version: "2"
+
+services:
+  model:
+    build: .
+    command: app.py
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./pdf-classification:/code/pdf-classification
