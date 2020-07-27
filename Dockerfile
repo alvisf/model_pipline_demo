@@ -10,7 +10,7 @@ COPY ./pdf-classification/requirements.txt /code/pdf-classification/
 RUN pip3 install -r /code/pdf-classification/requirements.txt
 RUN apt-get install -y poppler-utils
 RUN apt-get install -y tesseract-ocr
-# RUN sudo apt-get install -y curl
+
 
 EXPOSE 5001
 WORKDIR "/code/pdf-classification/"

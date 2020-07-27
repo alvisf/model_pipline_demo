@@ -5,7 +5,6 @@ services:
     image: iamalvis/mlops:latest
     # build: .
     command: python3 app.py
-    command: sudo apt-get install -y curl
     ports:
       - "5001:5001"
     volumes:
