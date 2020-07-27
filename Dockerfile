@@ -1,4 +1,7 @@
 FROM ubuntu:20.04
+LABEL maintainer="Alvis F" \
+    name="alvisf" \
+    version="0.0.1"
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get -y install python3 && \
