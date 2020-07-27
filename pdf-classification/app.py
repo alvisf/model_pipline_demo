@@ -13,7 +13,7 @@ Source:
     https://stackoverflow.com/questions/13279399/how-to-obtain-values-of-request-variables-using-python-and-flask
 '''
 from __future__ import unicode_literals, print_function
-from flask import Flask, render_template, request, make_response
+from flask import Flask, render_template, request, make_response, jsonify
 from PyPDF2 import PdfFileReader, PdfFileWriter
 import requests
 import json
@@ -47,11 +47,73 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
-    return "hello world"
+    return jsonify({"URL": "/api/show_pdf", "REQUEST": "POST", "KEY": "pdf", "VALUE": "*.pdf", "enctype": "multipart/form-data"})
 
 
-@app.route('/show_pdf', methods=['GET', 'POST'])
-def show_pdf():
+# @app.route('/show_pdf', methods=['GET', 'POST'])
+# def show_pdf():
+#     UPLOAD_FOLDER = './static/uploads'
+#     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+#     pdf_path = None
+#     error_msg = None
+#     pdf = None
+#     if request.method == 'POST':
+#         file = request.files['pdf']
+#         if file.filename == '':
+#             error_msg = "Please Upload Any PDF"
+#         else:
+#             filename = secure_filename(file.filename)
+#             print(filename)
+#             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+#             pdf_path = "./static/uploads/{}".format(filename)
+#             #PDF_file = "python_basics.pdf"
+#             pages = convert_from_path(pdf_path)
+#             image_counter = 1
+#             for page in pages:
+#                 file_name = "page_"+str(image_counter)+".jpg"
+#                 page.save(file_name, 'JPEG')
+
+#     # Increment the counter to update filename
+#                 image_counter = image_counter + 1
+
+
+# # Variable to get count of total number of pages
+#             filelimit = image_counter-1
+
+#             outfile = "1.txt"
+
+#             f = open(outfile, "a")
+#             # pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+#             text = " "
+#             for i in range(1, filelimit + 1):
+#                 filename = "page_"+str(i)+".jpg"
+
+#                 text += str(((pytesseract.image_to_string(Image.open(filename)))))
+
+#                 text = text.replace('-\n', '')
+#                 f.write(text)
+#             f.close()
+#             # rev=request.form['konjactext']
+#             rev = text
+#             r = nlp1(rev.lower())
+
+#             if rev.lower().find('python') > 0 or rev.lower().find('system') > 0 or rev.lower().find('program') > 0 or rev.lower().find('software') > 0 or rev.lower().find('version') > 0:
+#                 l = [(ent.text, ent.label_, ent.start_char, ent.end_char)
+#                      for ent in r.ents]
+#                 x = {"file_name": filename,
+#                      "type": "TECH file"}
+
+#                 return render_template('show_pdf.html', pdf_path=pdf_path, result=x)
+#             else:
+#                 y = {"file_name": filename,
+#                      "type": "Non TECH file"}
+#                 return render_template('show_pdf.html', pdf_path=pdf_path, result=y)
+
+#     return render_template("show_pdf.html", pdf_path=pdf_path, error_msg=error_msg)
+
+
+@app.route('/api/show_pdf', methods=['GET', 'POST'])
+def pdf_result_api():
     UPLOAD_FOLDER = './static/uploads'
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     pdf_path = None
@@ -103,13 +165,13 @@ def show_pdf():
                 x = {"file_name": filename,
                      "type": "TECH file"}
 
-                return render_template('show_pdf.html', pdf_path=pdf_path, result=x)
+                return jsonify(x)
             else:
                 y = {"file_name": filename,
                      "type": "Non TECH file"}
-                return render_template('show_pdf.html', pdf_path=pdf_path, result=y)
+                return jsonify(y)
 
-    return render_template("show_pdf.html", pdf_path=pdf_path, error_msg=error_msg)
+    return jsonify({"URL": "/api/show_pdf", "REQUEST": "POST", "KEY": "pdf", "VALUE": "*.pdf", "enctype": "multipart/form-data"})
 
 
 if __name__ == "__main__":
