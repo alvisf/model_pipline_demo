@@ -1,3 +1,3 @@
 # mlops
 
-ml base image to run version 1
+ml base image to run version 2
