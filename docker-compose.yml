@@ -2,7 +2,7 @@ version: "2"
 
 services:
   model:
-    build: .
+    image: iamalvis/mlops:latest
     command: app.py
     ports:
       - "5001:5001"
