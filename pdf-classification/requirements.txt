@@ -1,0 +1,10 @@
+flask 
+PyPDF2 
+requests
+pytesseract 
+pdf2image  
+werkzeug
+plac
+pathlib 
+spacy
+tqdm 
