@@ -7,5 +7,5 @@ services:
     command: python3 app.py
     ports:
       - "5001:5001"
-    volumes:
-      - ./pdf-classification:/code/pdf-classification
+    # volumes:
+    #   - ./pdf-classification:/code/pdf-classification
