@@ -8,3 +8,4 @@ plac
 pathlib 
 spacy
 tqdm 
+pytest
