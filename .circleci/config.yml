@@ -16,7 +16,7 @@ jobs:
           name: Run tests
           command: |
             docker-compose up -d --build
-            ls -l
+            ls pdf-classification
             docker-compose run model pytest
       # - deploy:
       #     name: Push application Docker image
