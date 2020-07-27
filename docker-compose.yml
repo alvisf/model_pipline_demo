@@ -3,7 +3,8 @@ version: "2"
 services:
   model:
     image: iamalvis/mlops:latest
-    command: app.py
+    # build: .
+    command: python3 app.py
     ports:
       - "5001:5001"
     volumes:

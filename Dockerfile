@@ -13,5 +13,5 @@ RUN apt-get install -y tesseract-ocr
 
 EXPOSE 5001
 WORKDIR "/code/pdf-classification/"
-ENTRYPOINT ["python3"]
+# ENTRYPOINT ["python3"]
 # CMD ["app.py"]
